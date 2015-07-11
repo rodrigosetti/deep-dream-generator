@@ -18,7 +18,7 @@ RUN apt-get update
 RUN apt-get install -y wget
 
 # Fetch & install Anaconda
-RUN wget http://09c8d0b2229f813c1b93-c95ac804525aac4b6dba79b00b39d1d3.r79.cf1.rackcdn.com/Anaconda-2.0.1-Linux-x86_64.sh && bash Anaconda-2.0.1-Linux-x86_64.sh -b
+RUN wget https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.3.0-Linux-x86_64.sh && bash Anaconda-2.3.0-Linux-x86_64.sh -b
 
 # Set Anaconda's path
 ENV PATH=/root/anaconda/bin:$PATH
@@ -51,6 +51,9 @@ ADD caffe-ld-so.conf /etc/ld.so.conf.d/
 
 # Run ldconfig again (not sure if needed)
 RUN ldconfig
+
+# Copy models to the container
+ADD models /models
 
 # Copy the notebook into the container
 ADD dream.ipynb /notebooks/
